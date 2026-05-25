@@ -1,21 +1,33 @@
 [build-system]
 requires = ["setuptools>=68", "wheel"]
-build-backend = "setuptools.backends.legacy:build"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "vector-field"
 version = "0.1.0"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "numpy>=1.26",
+    "matplotlib>=3.8",
+]
 
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0",
     "pytest-cov",
+    "basedpyright>=1.28",
+    "PyQt6",
 ]
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.basedpyright]
+pythonVersion = "3.10"
+pythonPlatform = "Linux"
+typeCheckingMode = "standard"
+include = ["src"]
+exclude = ["**/__pycache__"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
